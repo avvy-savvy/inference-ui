@@ -1,0 +1,42 @@
+'use client';
+import {Roboto} from "next/font/google";
+import {createTheme} from "@mui/material/styles";
+
+const roboto = Roboto({
+    weight: ['300', '400', '500', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+});
+
+const theme = createTheme({
+    palette: {
+        mode: 'light',
+    },
+    typography: {
+        fontFamily: roboto.style.fontFamily,
+    },
+    components: {
+        MuiAlert: {
+            styleOverrides: {
+                root: ({ownerState}) => ({
+                    ...(ownerState.severity === 'info' && {
+                        backgroundColor: '#60a5fa',
+                    }),
+                }),
+            },
+        },
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    backgroundImage: `url("/mountains-background.png")`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    width: "100%",
+                    height: "100%",
+                }
+            }
+        }
+    },
+});
+
+export default theme;
